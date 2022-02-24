@@ -1,21 +1,29 @@
 console.log('Desafio Simulador');
 
-function Producto(nombre, marca, costo, cantidad) {
-    this.nombre = nombre
-    this.marca = marca
-    this.costo = costo
-    this.cantidad = cantidad
-}
+// function Producto(nombre, marca, costo, cantidad) {
+//     this.nombre = nombre
+//     this.marca = marca
+//     this.costo = costo
+//     this.cantidad = cantidad
+// }
 
-const unidadSSD = new Producto('SSD HP 240gb', 'HP', 550, 20);
-const unidadHDD = new Producto('HDD Sata 1TB', 'SATA', 950, 15);
-const mouse1 = new Producto('Mouse Logitech G600', 'LOGITECH', 680, 10);
-const monitor1 = new Producto('Monitor Sceptre 200Hz','SCEPTRE', 8700, 3);
+// const unidadSSD = new Producto('SSD HP 240gb', 'HP', 550, 20);
+// const unidadHDD = new Producto('HDD Sata 1TB', 'SATA', 950, 15);
+// const mouse1 = new Producto('Mouse Logitech G600', 'LOGITECH', 680, 10);
+// const monitor1 = new Producto('Monitor Sceptre 200Hz','SCEPTRE', 8700, 3);
 
-console.log(unidadSSD);
-console.log(unidadHDD);
-console.log(mouse1);
-console.log(monitor1);
+// console.log(unidadSSD);
+// console.log(unidadHDD);
+// console.log(mouse1);
+// console.log(monitor1);
+
+
+
+// Preguntar que producto agregar
+// Mostrar Nombre de Producto cuenta
+// Preguntar si quieres agregar otro producto
+// Preguntar si tiene codigo de descuento y si lo tiene cargar descuento
+// Mostrar subtotal y total
 
 let ssd = 550
 let hdd = 950
@@ -78,9 +86,5 @@ console.log('Subtotal: ' + subtotali)
 console.log('     IVA: '+ iva);
 console.log('   Total: '+ costprod)
 
-// Preguntar que producto agregar
-// Preguntar cantidad a agregar
-// Mostrar subtotal y total
-// Preguntar si quieres agregar otro
-// Mostrar subtotal y total
+
 
