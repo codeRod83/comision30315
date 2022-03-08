@@ -1,4 +1,4 @@
-console.log('1er Entrega del Proyecto Final');
+console.log('Simulador');
 
 // VARIABLES
 let proceso = 0
