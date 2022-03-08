@@ -1,90 +1,139 @@
-console.log('Desafio Simulador');
+console.log('1er Entrega del Proyecto Final');
 
-// function Producto(nombre, marca, costo, cantidad) {
-//     this.nombre = nombre
-//     this.marca = marca
-//     this.costo = costo
-//     this.cantidad = cantidad
-// }
-
-// const unidadSSD = new Producto('SSD HP 240gb', 'HP', 550, 20);
-// const unidadHDD = new Producto('HDD Sata 1TB', 'SATA', 950, 15);
-// const mouse1 = new Producto('Mouse Logitech G600', 'LOGITECH', 680, 10);
-// const monitor1 = new Producto('Monitor Sceptre 200Hz','SCEPTRE', 8700, 3);
-
-// console.log(unidadSSD);
-// console.log(unidadHDD);
-// console.log(mouse1);
-// console.log(monitor1);
-
-
-
-// Preguntar que producto agregar
-// Mostrar Nombre de Producto cuenta
-// Preguntar si quieres agregar otro producto
-// Preguntar si tiene codigo de descuento y si lo tiene cargar descuento
-// Mostrar subtotal y total
-
+// VARIABLES
+let proceso = 0
+const inv = [] 
+const miCarrito = []
+let agregar = 's'
 let ssd = 550
 let hdd = 950
 let mouse = 680
 let monitor = 8700
-let agregar
 let costprod = 0
-let desc1 = 10
-let desc2 = 20
-let desc3 = 30
+let descuento
+let desc = 0
+let desc1 = .90
+let desc2 = .80
+let desc3 = .70
 let subtotalf = costprod
+let opcion
+let lugar = ''
 
-while (agregar != 'n') {
+// FUNCIONES
+function Producto( nombre, marca, costo, cantidad ) {
+    this.nombre = nombre
+    this.marca = marca
+    this.costo = costo
+    this.cantidad = cantidad
+}
+function agrega() {
+    agregar = prompt(`Quieres agregar otro producto al ${lugar} (s)(n)`)
+}
+function add(prod, opcion) {
+    costprod = costprod + prod
+    console.log(`Agregaste un ${opcion} a tu carrito`)
+    console.log('   Costo: ' + prod)
+    miCarrito.push(opcion)
+}
+function alerta() {
+    costprod = costprod * desc
+    alert(`Agregaste un ${descuento}% de descuento`);
+}
+function discount(descuento) {
+    if (parseInt(descuento) == 10) {
+        desc = desc1;
+        alerta()
+    } else if (parseInt(descuento) == 20) {
+        desc = desc2
+        alerta()
+    } else if (parseInt(descuento) == 30) {
+        desc = desc3
+        alerta()
+    }
+}
+
+// CODIGO
+while (parseInt(proceso) <= 3) {
+     
+    proceso = prompt('Que proceso quieres realizar:\n  1) Ingresar Producto\n  2) Eliminar Producto\n  3) Comprar producto')
     
-    let opcion = prompt('Que producto quieres agregar:\n1 SSD\n2 hdd\n3 mouse\n4 monitor ')
-    if (opcion == 1) {
-        costprod = costprod + ssd
-        console.log('Agregaste un SSD a tu carrito');
-        console.log('   Total: '+ costprod)    
-    } else if (opcion == 2) {
-        costprod = costprod + hdd
-        console.log('Agregaste un HDD a tu carrito');
-        console.log('   Total: '+ costprod)        
-    } else if (opcion == 3) {
-        costprod = costprod + mouse
-        console.log('Agregaste un Mouse a tu carrito');
-        console.log('   Total: '+ costprod)        
-    } else if (opcion == 4) {
-        costprod = costprod + monitor
-        console.log('Agregaste un Monitor a tu carrito');
-        console.log('   Total: '+ costprod)        
-}
+    switch (parseInt(proceso)) {
+        case 1:
+            agregar = 's'
+            while ( agregar != 'n' && agregar != 'N' ) {
+                
+                let dato1 = prompt('Que producto quieres agregar:')
+                let dato2 = prompt('De que marca es el producto:')
+                let dato3 = prompt('Que costo tendra el producto:')
+                let dato4 = prompt('Cuantas unidades piensas agregar:')
+                
+                const product = new Producto( dato1.toUpperCase(), dato2.toUpperCase(), parseFloat(dato3), parseInt(dato4) )
+                console.log(product)
+                inv.push(product)
+                lugar = 'Inventario'
+                agrega()
+            }
+            break
 
-agregar = prompt('Quieres agregar comprar otro producto: (s)(n)')
-}
-let descuento = prompt('Si tienes algun codigo de descuento ingresalo aqui: ')
-switch (parseInt(descuento)) {
-    case 10:
-        costprod = costprod * .90
-        alert('Agregaste un 10% de descuento');
-        break;
-
-    case 20:
-        costprod = costprod * .80
-        alert('Agregaste un 20% de descuento');
-        break;
+        case 2:
+            alert('En mantenimiento');
+            //  ELIMINAR PRODUCTO
+            //  Preguntar ID de Producto
+            //  Preguntar cantidad a borrar
+            //  Preguntar Si quieres Eliminar otro producto
+            break;
     
-    case 30:
-        costprod = costprod * .70
-        alert('Agregaste un 30% de descuento');
-        break;
-    default:
+        case 3:
+            agregar = 's'
+            console.log(`Productos a la venta:`)
+            for (let i = 0; i < inv.length; i++) {
+                let pr = i
+                console.log(inv[pr])
+            }
+            
+            while (agregar != 'n' && agregar != 'N') {
+                let opcion = prompt('Que producto quieres agregar:\n1 SSD\n2 HDD\n3 Mouse\n4 Monitor ')
+                if (opcion == 1) {
+                    add(ssd, 'SSD');
+                }
+                else if (opcion == 2) {
+                    add(hdd, 'HDD');
+                } else if (opcion == 3) {
+                    add(mouse, 'Mouse');
+                } else if (opcion == 4) {
+                    add(monitor, 'Monitor');
+                }
+                // miCarrito.push(`${opcion}`)
+                console.log( miCarrito.join("\n") );
+                lugar = 'Carrito de compras'
+                agrega()
+            }
 
-        break;
+            console.log("Los siguientes son los codigos de descuento:\n10 --> 10%\n20 --> 20%\n30 --> 30%");
+            descuento = prompt('Si tienes algun codigo de descuento ingresalo aqui: ')
+            switch (parseInt(descuento)) {
+                case 10:
+                    discount(10)
+                    break
+                case 20:
+                    discount(20)
+                    break
+                case 30:
+                    discount(30)
+                    break
+                default:
+                    break;
+            }
+            
+            sub = costprod * .84
+            let iva = costprod - sub
+            console.log('Aqui tienes tu cuenta Total: ');
+            console.log('Subtotal: ' + sub)
+            console.log('     IVA: ' + iva);
+            console.log('   Total: ' + costprod)
+            console.log(`Agregaste ${miCarrito.length} productos a tu carrito`);
+            miCarrito.push('')
+            console.log(`${miCarrito.join(" --> 1 pza\n")}`);
+            break;
+    }
 }
-subtotali = costprod * .84
-let iva = costprod * .16
-console.log('Aqui tienes tu cuenta Total: ');
-console.log('Subtotal: ' + subtotali)
-console.log('     IVA: '+ iva);
-console.log('   Total: '+ costprod)
-
-
-
