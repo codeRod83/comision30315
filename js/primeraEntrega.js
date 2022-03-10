@@ -1,6 +1,7 @@
 console.log('1er Entrega del Proyecto Final');
 
 // VARIABLES
+let dato0 = 0
 let proceso = 0
 const inv = [] 
 const miCarrito = []
@@ -21,6 +22,7 @@ let lugar = ''
 
 // FUNCIONES
 function Producto( nombre, marca, costo, cantidad ) {
+    this.id = id
     this.nombre = nombre
     this.marca = marca
     this.costo = costo
@@ -58,31 +60,33 @@ while (parseInt(proceso) <= 3) {
     proceso = prompt('Que proceso quieres realizar:\n  1) Ingresar Producto\n  2) Eliminar Producto\n  3) Comprar producto')
     
     switch (parseInt(proceso)) {
-        case 1:
-            agregar = 's'
-            while ( agregar != 'n' && agregar != 'N' ) {
-                
-                let dato1 = prompt('Que producto quieres agregar:')
-                let dato2 = prompt('De que marca es el producto:')
-                let dato3 = prompt('Que costo tendra el producto:')
-                let dato4 = prompt('Cuantas unidades piensas agregar:')
-                
-                const product = new Producto( dato1.toUpperCase(), dato2.toUpperCase(), parseFloat(dato3), parseInt(dato4) )
-                console.log(product)
-                inv.push(product)
-                lugar = 'Inventario'
-                agrega()
-            }
-            break
-
+        // AGREGA PRODUCTOS AL INVENTARIO
+    case 1:
+        agregar = 's'
+        while ( agregar != 'n' && agregar != 'N' ) {
+            
+            dato0 = dato0 + 1
+            let dato1 = prompt('Que producto quieres agregar:')
+            let dato2 = prompt('De que marca es el producto:')
+            let dato3 = prompt('Que costo tendra el producto:')
+            let dato4 = prompt('Cuantas unidades piensas agregar:')
+            
+            const product = new Productos( parseInt(dato0), dato1.toUpperCase(), dato2.toUpperCase(), parseFloat(dato3), parseInt(dato4) )
+            console.log(product)
+            inv.push(product)
+            lugar = 'Inventario'
+            agrega()
+        }
+        break
+            // QUITA PRODUCTOS DEL INVENTARIO
         case 2:
             alert('En mantenimiento');
             //  ELIMINAR PRODUCTO
             //  Preguntar ID de Producto
             //  Preguntar cantidad a borrar
             //  Preguntar Si quieres Eliminar otro producto
-            break;
-    
+            break
+            // CARRITO DE COMPRAS    
         case 3:
             agregar = 's'
             console.log(`Productos a la venta:`)
