@@ -97,7 +97,7 @@ while (parseInt(proceso) <= 3) {
             break
             // QUITA PRODUCTOS DEL INVENTARIO
         case 3:
-            alert('Eliminar productos de Inventario en mantenimiento');
+            alert('Eliminar productos\n Se encuentra mantenimiento');
             //  ELIMINAR PRODUCTO
             //  Preguntar ID de Producto
             //  Preguntar cantidad a borrar
@@ -105,7 +105,7 @@ while (parseInt(proceso) <= 3) {
             break
             // CARRITO DE COMPRAS
         case 4:
-            alert('Carrito de compras en mantenimiento');
+            alert('Carrito de compras\n Se encuentra mantenimiento');
     //         agregar = 's'
     //         console.log(`Productos a la venta:`)
     //         for (let i = 0; i < inv.length; i++) {
@@ -156,6 +156,6 @@ while (parseInt(proceso) <= 3) {
     //         console.log(`Agregaste ${miCarrito.length} productos a tu carrito`);
     //         miCarrito.push('')
     //         console.log(`${miCarrito.join(" --> 1 pza\n")}`);
-    //         break
+            break
     }
 }
