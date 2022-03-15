@@ -94,7 +94,7 @@ boton2.onclick = () => {
             }
 }
 boton3.onclick = () => {
-    alert('Eliminar productos\n Se encuentra mantenimiento');
+    alert('Eliminar productos\nSe encuentra mantenimiento');
 }
 boton4.onclick = () => {
     agregar = 's'
