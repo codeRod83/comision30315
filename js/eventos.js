@@ -101,44 +101,45 @@ boton4.onclick = () => {
     prodn = inv.length
     console.log(prodn);
             
-            while (agregar != 'n' && agregar != 'N') {
-                let opcion = prompt(`Que producto quieres agregar:\n1 ${inv[0].nombre} \n2 ${inv[1].nombre}\n3 ${inv[2].nombre}\n4 ${inv[3].nombre} `)
-                if (opcion == 1) {
-                    add(inv[0].costo, inv[0].nombre);
-                }
-                else if (opcion == 2) {
-                    add(inv[1].costo, inv[1].nombre);
-                } else if (opcion == 3) {
-                    add(inv[2].costo, inv[2].nombre);
-                } else if (opcion == 4) {
-                    add(inv[3].costo, inv[3].nombre);
-                }
-                // miCarrito.push(`${opcion}`)
-                console.log( miCarrito.join("\n") );
-                lugar = 'Carrito de compras'
-                agrega()
-            }
+    while (agregar != 'n' && agregar != 'N') {
+        let opcion = prompt(`Que producto quieres agregar:\n1 ${inv[0].nombre} \n2 ${inv[1].nombre}\n3 ${inv[2].nombre}\n4 ${inv[3].nombre} `)
+        if (opcion == 1) {
+            add(inv[0].costo, inv[0].nombre);
+        }
+        else if (opcion == 2) {
+            add(inv[1].costo, inv[1].nombre);
+        } else if (opcion == 3) {
+            add(inv[2].costo, inv[2].nombre);
+        } else if (opcion == 4) {
+            add(inv[3].costo, inv[3].nombre);
+        }
+        // miCarrito.push(`${opcion}`)
+        console.log(miCarrito.join("\n"));
+        lugar = 'Carrito de compras'
+        agrega()
+    }
 
-            alert("Los siguientes son los codigos de descuento:\n10 --> 10%\n20 --> 20%\n30 --> 30%");
-            descuento = prompt('Si tienes algun codigo de descuento ingresalo aqui: ')
-            switch (parseInt(descuento)) {
-                case 10:
-                    discount(10)
-                    break
-                case 20:
-                    discount(20)
-                    break
-                case 30:
-                    discount(30)
-                    break
-                default:
-                    break;
-            }
+    alert("Los siguientes son los codigos de descuento:\n10 --> 10%\n20 --> 20%\n30 --> 30%");
+    descuento = prompt('Si tienes algun codigo de descuento ingresalo aqui: ')
+    switch (parseInt(descuento)) {
+        case 10:
+            discount(10)
+            break
+        case 20:
+            discount(20)
+            break
+        case 30:
+            discount(30)
+            break
+        default:
+            break;
+    }
             
-            sub = costprod * .84
-            let iva = costprod - sub
+    sub = costprod * .84
+    let iva = costprod - sub
     alert('Aqui tienes tu cuenta Total: ');
     alert(`Subtotal: $ ${sub}\n        IVA: $ ${iva}\n      Total: $ ${costprod}`)
     miCarrito.push('')
     let prodcar = miCarrito.length - 1
     alert(`Agregaste ${prodcar} productos a tu carrito\n${miCarrito.join(" --> 1 pza\n")}`)
+}
