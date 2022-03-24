@@ -280,7 +280,4 @@ function cuentaAdmin() {
     `;
 	menuAdmon.innerHTML = admin;
 	linkTienda.innerHTML = tienda;
-
-	// menuAdmon.append(admin);
-	// console.log(invent);
 }
