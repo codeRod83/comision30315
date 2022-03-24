@@ -8,8 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - RM Sistemas</title>
-    <script src="./js/main.js" defer></script>
+    <title>Usuarios - RM Sistemas</title>
+    <script src="../js/main.js" defer></script>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
                 <nav class="navbar navbar-light pt-1">
                     <div class="header__logo container">
                         <a class="logo navbar-brand" href="#">
-                            <img src="./assets/img/logo.png" onload="mostrarAdmon()"
+                            <img src="../assets/img/logo.png" onload="cargarPaginaUsers()"
                                 alt="Imagen Logo RM Sistemas Informaticos" width="200" height="200">
                         </a>
                     </div>
@@ -33,23 +33,16 @@
                     data-aos-duration="1800">
                     <ul class="navbar-nav align-items-center me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="header__link nav-link disabled" aria-current="page" href="./index.html">Inicio</a>
+                            <a class="header__link nav-link" aria-current="page" href="../index.html">Inicio</a>
                         </li>
                         <li id="admMenu" class="nav-item dropdown">
-                            <!-- <a class="header__link nav-link dropdown-toggle disabled" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                            <a class="header__link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="header__link nav-link" href="./admon/inventario.html">Inventario</a></li>
-                                <li><a class="header__link nav-link" href="./admon/usuarios.html">Usuarios</a></li>
-                            </ul> -->
+                                <li><a class="header__link nav-link" href="./inventario.html">Inventario</a></li>
+                                <li><a class="header__link nav-link" href="./usuarios.html">Usuarios</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="header__link nav-link" href="./usuario/tienda.html">Tienda</a>
-                        </li>
-                        <li>
-                            <button type="button" class="btn-info" onclick="logIn()">Info</button>
-                        </li>
-
                     </ul>
                     <div class="d-flex">
                         <form class="row g-3">
@@ -64,9 +57,8 @@
                                     placeholder="Contraseña">
                             </div>
                             <div class="col-auto">
-                                <button id="sesionini" type="button" class="btn btn-primary mb-3"
-                                    onclick="addUser()">Iniciar
-                                    sesión</button>
+                                <button id="addUs" onclick="addUser()" type="submit" class="btn btn-primary mb-3">Agrega
+                                    Usuario</button>
                             </div>
                         </form>
                     </div>
@@ -80,11 +72,11 @@
                 <thead>
                     <tr class="table-dark">
                         <th scope="col">#</th>
-                        <th scope="col">Administrador</th>
+                        <th scope="col">Usuario</th>
                         <th scope="col">Pass</th>
                     </tr>
                 </thead>
-                <tbody id="tabUserIndex">
+                <tbody id="tabUser">
                 </tbody>
             </table>
         </div>
