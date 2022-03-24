@@ -12,15 +12,15 @@
     <script src="./js/main.js" defer></script>
 </head>
 
-<body>
+<body onload="mostrarAdmon()">
     <header class="overflow-hidden">
         <nav class="header navbar navbar-expand-lg bg-light">
             <div class="header__contenedor container-fluid justify-content-evenly">
                 <nav class="navbar navbar-light pt-1">
                     <div class="header__logo container">
                         <a class="logo navbar-brand" href="#">
-                            <img src="./assets/img/logo.png" onload="mostrarAdmon()"
-                                alt="Imagen Logo RM Sistemas Informaticos" width="200" height="200">
+                            <img src="./assets/img/logo.png" alt="Imagen Logo RM Sistemas Informaticos" width="200"
+                                height="200">
                         </a>
                     </div>
                 </nav>
@@ -36,18 +36,12 @@
                             <a class="header__link nav-link disabled" aria-current="page" href="./index.html">Inicio</a>
                         </li>
                         <li id="admMenu" class="nav-item dropdown">
-                            <!-- <a class="header__link nav-link dropdown-toggle disabled" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="header__link nav-link" href="./admon/inventario.html">Inventario</a></li>
-                                <li><a class="header__link nav-link" href="./admon/usuarios.html">Usuarios</a></li>
-                            </ul> -->
                         </li>
-                        <li class="nav-item">
-                            <a class="header__link nav-link" href="./usuario/tienda.html">Tienda</a>
+                        <li class="nav-item" id="tienda">
+
                         </li>
                         <li>
-                            <button type="button" class="btn-info" onclick="logIn()">Info</button>
+                            <button type="submit" class="btn btn-info" onclick="logIn()">Info</button>
                         </li>
 
                     </ul>
@@ -55,17 +49,17 @@
                         <form class="row g-3">
                             <div class="col-auto">
                                 <label for="staticEmail2" class="visually-hidden">Usuario</label>
-                                <input type="text" class="form-control" id="inputU" autocomplete="username"
+                                <input type="text" class="form-control" id="inputUi" autocomplete="username"
                                     placeholder="Nombre Usuario">
                             </div>
                             <div class="col-auto">
                                 <label for="inputPassword2" class="visually-hidden">Contraseña</label>
-                                <input type="password" class="form-control" id="inputP" autocomplete="current-password"
+                                <input type="password" class="form-control" id="inputPi" autocomplete="current-password"
                                     placeholder="Contraseña">
                             </div>
                             <div class="col-auto">
                                 <button id="sesionini" type="button" class="btn btn-primary mb-3"
-                                    onclick="addUser()">Iniciar
+                                    onclick="sessionIni()">Iniciar
                                     sesión</button>
                             </div>
                         </form>

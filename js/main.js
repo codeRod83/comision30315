@@ -159,6 +159,7 @@ function compraProductos() {
 const usuarioStore = localStorage.getItem('usuariosls');
 let usuarios = [];
 usuarios.push(defUser);
+
 function cargarPaginaUsers() {
 	if (usuarioStore) {
 		usuarios = JSON.parse(usuarioStore);
@@ -199,26 +200,6 @@ function addUser() {
 		alert('Ingresa usuario y contraseña');
 	}
 }
-function mostrarAdmon() {
-	const containera = document.getElementById('tabUserIndex');
-	const userConti = document.createElement('tr');
-	userConti.className = 'table-dark';
-
-	const userNum = document.createElement('th');
-	userNum.scope = 'row';
-	userNum.textContent = usuarios[0].id;
-	userConti.appendChild(userNum);
-	const userName = document.createElement('td');
-	userName.className = 'table-dark';
-	userName.textContent = usuarios[0].user;
-	userConti.appendChild(userName);
-	const userPass = document.createElement('td');
-	userPass.className = 'table-dark';
-	userPass.textContent = usuarios[0].pass;
-	userConti.appendChild(userPass);
-
-	containera.appendChild(userConti);
-}
 
 function mostrarUsuarios() {
 	const contenedor = document.getElementById('tabUser');
@@ -245,15 +226,61 @@ function mostrarUsuarios() {
 	}
 }
 
+function mostrarAdmon() {
+	const containera = document.getElementById('tabUserIndex');
+	const userConti = document.createElement('tr');
+	userConti.className = 'table-dark';
+
+	const userNum = document.createElement('th');
+	userNum.scope = 'row';
+	userNum.textContent = usuarios[0].id;
+	userConti.appendChild(userNum);
+	const userName = document.createElement('td');
+	userName.className = 'table-dark';
+	userName.textContent = usuarios[0].user;
+	userConti.appendChild(userName);
+	const userPass = document.createElement('td');
+	userPass.className = 'table-dark';
+	userPass.textContent = usuarios[0].pass;
+	userConti.appendChild(userPass);
+
+	containera.appendChild(userConti);
+}
+
+function sessionIni() {
+	const inputUs = document.getElementById('inputUi');
+	const user = inputUs.value;
+	const inputPa = document.getElementById('inputPi');
+	const pass = inputPa.value;
+
+	if (user === usuarios[0].user && pass === usuarios[0].pass) {
+		cuentaAdmin();
+		user.value = '';
+		pass.value = '';
+	} else if (user.trim() && pass.trim()) {
+		user.value = '';
+		pass.value = '';
+	} else {
+		alert('Ingresa usuario y contraseña');
+	}
+}
+
 function cuentaAdmin() {
 	const menuAdmon = document.getElementById('admMenu');
+	const linkTienda = document.getElementById('tienda');
 	const admin = `
     <a class="header__link nav-link dropdown-toggle" href="#" id="admonMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown id">
         <li><a class="header__link nav-link" href="./admon/inventario.html">Inventario</a></li>
         <li><a class="header__link nav-link" href="./admon/usuarios.html">Usuarios</a></li>
-    </ul>`;
+    </ul>
+    `;
+	const tienda = `
+    <a class="header__link nav-link" href="./usuario/tienda.html">Tienda</a>
+    `;
 	menuAdmon.innerHTML = admin;
+	linkTienda.innerHTML = tienda;
+
 	// menuAdmon.append(admin);
 	// console.log(invent);
 }

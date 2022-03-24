@@ -35,31 +35,18 @@
                         <li class="nav-item">
                             <a class="header__link nav-link" aria-current="page" href="../index.html">Inicio</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="header__link nav-link disabled" href="./src/inventario.html">Inventario</a>
+                        <li id="admMenu" class="nav-item dropdown">
+                            <a class="header__link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="header__link nav-link" href="./inventario.html">Inventario</a></li>
+                                <li><a class="header__link nav-link" href="./usuarios.html">Usuarios</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="header__link nav-link" href="../usuario/tienda.html">Tienda</a>
                         </li>
                     </ul>
-                    <!-- <div class="d-flex">
-                        <form class="row g-3">
-                            <div class="col-auto">
-                                <label for="staticEmail2" class="visually-hidden">Usuario</label>
-                                <input type="text" class="form-control" id="inputU" autocomplete="username"
-                                    placeholder="Nombre Usuario">
-                            </div>
-                            <div class="col-auto">
-                                <label for="inputPassword2" class="visually-hidden">Contraseña</label>
-                                <input type="password" class="form-control" id="inputP" autocomplete="current-password"
-                                    placeholder="Contraseña">
-                            </div>
-                            <div class="col-auto">
-                                <button id="confirm" onclick="addUser()" type="submit"
-                                    class="btn btn-primary mb-3">Iniciar sesión</button>
-                            </div>
-                        </form>
-                    </div> -->
                 </div>
             </div>
         </nav>
