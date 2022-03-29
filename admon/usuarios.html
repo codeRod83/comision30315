@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios - RM Sistemas</title>
+    <link rel="stylesheet" href="../css/estilos.css">
     <script src="../js/main.js" defer></script>
 </head>
 
@@ -19,8 +20,8 @@
                 <nav class="navbar navbar-light pt-1">
                     <div class="header__logo container">
                         <a class="logo navbar-brand" href="../index.html">
-                            <img src="../assets/img/logo.png" alt="Imagen Logo RM Sistemas Informaticos" width="200"
-                                height="200">
+                            <img data-aos="zoom-in" data-aos-duration="1800" src="../assets/img/logo.png"
+                                alt="Imagen Logo RM Sistemas Informaticos" width="200" height="200">
                         </a>
                     </div>
                 </nav>
@@ -40,32 +41,18 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="header__link nav-link" href="./inventario.html">Inventario</a></li>
-                                <li><a class="header__link nav-link" href="./usuarios.html">Usuarios</a></li>
+                                <li><a class="header__link nav-link disabled" href="./usuarios.html">Usuarios</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="header__link nav-link" href="../usuario/tienda.html">Tienda</a>
+                        </li>
                     </ul>
-                    <div class="d-flex">
-                        <form class="row g-3">
-                            <div class="col-auto">
-                                <label for="staticEmail2" class="visually-hidden">Usuario</label>
-                                <input type="text" class="form-control" id="inputU" autocomplete="username"
-                                    placeholder="Nombre Usuario">
-                            </div>
-                            <div class="col-auto">
-                                <label for="inputPassword2" class="visually-hidden">Contraseña</label>
-                                <input type="password" class="form-control" id="inputP" autocomplete="current-password"
-                                    placeholder="Contraseña">
-                            </div>
-                            <div class="col-auto">
-                                <button id="addUs" onclick="addUser()" type="submit" class="btn btn-primary mb-3">Agrega
-                                    Usuario</button>
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </nav>
     </header>
+    <hr class="divisores" style="height: 4px;">
     <main class="container">
         <div class="container">
             <table class="table table-striped table-hover">
