@@ -39,7 +39,7 @@
                         <li id="admMenu" class="nav-item dropdown">
                             <a class="header__link nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="adm dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="header__link nav-link" href="./inventario.html">Inventario</a></li>
                                 <li><a class="header__link nav-link disabled" href="./usuarios.html">Usuarios</a></li>
                             </ul>
@@ -48,11 +48,28 @@
                             <a class="header__link nav-link" href="../usuario/tienda.html">Tienda</a>
                         </li>
                     </ul>
+                    <div class="d-flex">
+                        <form class="row g-3">
+                            <div class="col-auto">
+                                <label for="staticEmail2" class="visually-hidden">Usuario</label>
+                                <input type="text" class="form-control" id="inputU" autocomplete="username"
+                                    placeholder="Nombre Usuario">
+                            </div>
+                            <div class="col-auto">
+                                <label for="inputPassword2" class="visually-hidden">Contraseña</label>
+                                <input type="password" class="form-control" id="inputP" autocomplete="current-password"
+                                    placeholder="Contraseña">
+                            </div>
+                            <div class="col-auto">
+                                <button id="addUs" onclick="addUser()" type="submit" class="btn btn-primary mb-3">Agrega
+                                    Usuario</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <hr class="divisores" style="height: 4px;">
     <main class="container">
         <div class="container">
             <table class="table table-striped table-hover">
