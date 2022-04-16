@@ -46,15 +46,64 @@
   <main class="container">
 
     <div class="container m-4">
+      <div class="my-5">
+        <h2 class=" text-center">Carrito de Compras</h2>
+        <table class="table">
+          <thead>
+            <tr class="table-primary border-2 border-primary">
+              <th scope="col">ID</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Proceso</th>
+              <th scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody id="items"></tbody>
+          <tfoot>
+            <tr id="base-carrito">
+              <th scope="row" colspan="5">Carrito Vacio
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
 
       <!-- Eliminar al terminar de editar -->
       <a href="../admon/inventario.html">INVENTARIO</a>
       <br>
-      <h1 class=" text-center">Carrito de Compras</h1>
+      <h1 class=" text-center">Inventario CARDS</h1>
       <div class="row" id="contProductos">
-
       </div>
     </div>
+
+    <template id="template-footer">
+      <th scope="row" colspan="2">Carrito Vacio</th>
+      <td>10</td>
+      <td>
+        <button class="btn btn-danger btn-sm" id="vaciar-carrito">
+          vaciar Carrito
+        </button>
+      </td>
+      <td><span class="font-weight-bold">5000.00</span></td>
+    </template>
+
+    <template id="template-carrito">
+      <tr>
+        <th scope="row">1</th>
+        <td>SSD</td>
+        <td>1</td>
+        <td class="carrito-botones">
+          <button class="btn btn-success btn-sm">
+            +
+          </button>
+          <button class="btn btn-danger btn-sm">
+            -
+          </button>
+        </td>
+        <td><span> 5000.00</span></td>
+      </tr>
+    </template>
+
     <template id="template-cards">
       <div class="col-12 col-md-4">
         <div class="card" style="width: 18rem;">
@@ -62,14 +111,13 @@
           <div class="card-body">
             <h2 class="card-title text-center">Nombre de Producto</h2>
             <h3 class="card-marca text-center">Marca</h3>
-            <h4 id="costo" class="card-text text-center">$ <span>2000</span>.00 </h4>
+            <h4 id="costo" class="card-text text-center"><span>2000</span>.00 </h4>
             <p class="card-text text-center"><span>Existencias</span> pzs </p>
-            <a href="#" class="btn btn-primary">Comprar</a>
+            <button class="btn btn-primary">Comprar</button>
           </div>
         </div>
       </div>
     </template>
-
 
     <div class="container">
       <h1 class=" text-center">Lista de Productos</h1>

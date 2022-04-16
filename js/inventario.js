@@ -33,7 +33,7 @@ function muestraInventario() {
 	const contenedorInv = document.getElementById('tabProd');
 	contenedorInv.innerHTML = '';
 
-	for (const datProd of inv) {
+	inv.forEach(datProd => {
 		const prodCont = document.createElement('tr');
 		prodCont.className = 'table-info border-2 border-primary';
 
@@ -52,7 +52,7 @@ function muestraInventario() {
 		prodCont.appendChild(prodMarca);
 		const prodCosto = document.createElement('td');
 		prodCosto.className = 'table-info border__list text-center';
-		prodCosto.textContent = datProd.costo;
+		prodCosto.textContent = `$ ${(new Intl.NumberFormat(['es-MX'])).format(datProd.costo)}.00`;
 		prodCont.appendChild(prodCosto);
 		const prodStock = document.createElement('td');
 		prodStock.className = 'table-info text-center';
@@ -60,7 +60,7 @@ function muestraInventario() {
 		prodCont.appendChild(prodStock);
 
 		contenedorInv.appendChild(prodCont);
-	}
+	})
 }
 
 function addProd() {
@@ -92,7 +92,7 @@ function addProd() {
 			prod,
 			marca.toUpperCase(),
 			cost,
-			canti,
+			parseInt(canti),
 			imagen,
 		);
 		inv.push(product);
