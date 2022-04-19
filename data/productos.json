@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "nombre": "SSD",
+        "nombre": "SSD ADATA SU630 ULTIMATE 240GB",
         "marca": "ADATA",
         "costo": 550,
         "cantidad": 10,
@@ -9,7 +9,7 @@
     },
     {
         "id": 2,
-        "nombre": "HDD",
+        "nombre": "DISCO DURO WD BLUE 2TB 3.5 SATA 3",
         "marca": "WD",
         "costo": 950,
         "cantidad": 5,
@@ -17,17 +17,17 @@
     },
     {
         "id": 3,
-        "nombre": "Mouse",
-        "marca": "Logitech",
+        "nombre": "MOUSE LOGITECH G305 LIGHTSPEED",
+        "marca": "LOGITECH",
         "costo": 680,
         "cantidad": 30,
         "thumbnailUrl": "https://picsum.photos/id/20/600"
     },
     {
         "id": 4,
-        "nombre": "Monitor",
-        "marca": "Dell",
-        "costo": 8700,
+        "nombre": "MONITOR LED 27 DELL S2719DGF QHD 2K 155HZ 1MS",
+        "marca": "DELL",
+        "costo": 10500,
         "cantidad": 3,
         "thumbnailUrl": "https://picsum.photos/id/30/600"
     }   

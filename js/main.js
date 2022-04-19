@@ -1,94 +1,51 @@
 // VARIABLES, OBJETOS & ARRAYS
 
-let btnInfo = document.getElementById('btn__info');
-let btnLogin = document.getElementById('btn__log');
-const usuarioStore = localStorage.getItem('usuariosls');
 let usuarios = [];
 
 // LLAMADA USUARIOS DESDE JSON POR MEDIO DE FETCH
 
-const URL = 'data/usuarios.json';
-fetch(URL)
-	.then((res) => res.json())
-	.then((userData) => {});
-
-const response = await fetch(URL);
-usuarios = await response.json();
+const pedirJson = async () => {
+	const URL = 'data/usuarios.json';
+	const response = await fetch(URL);
+	usuarios = await response.json();
+	llamarLocalStorage();
+}
+pedirJson();
 
 // LLAMADA LOCAL STORAGE
 
-window.addEventListener('load', mostrarAdmon());
-btnInfo.addEventListener('click', infoLog);
-cargaUsuarios();
-btnLogin.addEventListener('click', sessionIni);
-console.log(usuarios);
-// FUNCIONES
-
-function cargaUsuarios() {
+const llamarLocalStorage = () => {
+	const usuarioStore = localStorage.getItem('usuariosls');
 	if (usuarioStore) {
 		usuarios = JSON.parse(usuarioStore);
 	}
+	mostrarAdmon();
+	botonInfo();
+	botonInicioSesion();
 }
 
-function mostrarAdmon() {
+// FUNCIONES
+
+const mostrarAdmon = () => {
 	const containerAdm = document.getElementById('tabUserIndex');
-	const userContent = document.createElement('tr');
-	userContent.className = 'table-dark';
+	const template = document.getElementById('template-adminUser').content
+	const fragment = document.createDocumentFragment();
+	
+	template.querySelector('th').textContent = usuarios[0].id;
+	template.querySelectorAll('td')[0].textContent = usuarios[0].rank;
+	template.querySelectorAll('td')[1].textContent = usuarios[0].user;
+	template.querySelectorAll('td')[2].textContent = usuarios[0].pass;
 
-	const userNum = document.createElement('th');
-	userNum.scope = 'row';
-	userNum.className = 'text-center';
-	userNum.textContent = usuarios[0].id;
-	userContent.appendChild(userNum);
-
-	const userRank = document.createElement('td');
-	userRank.className = 'text-center';
-	userRank.textContent = usuarios[0].rank;
-	userContent.appendChild(userRank);
-
-	const userName = document.createElement('td');
-	userName.className = 'text-center';
-	userName.textContent = usuarios[0].user;
-	userContent.appendChild(userName);
-	const userPass = document.createElement('td');
-	userPass.className = 'text-center';
-	userPass.textContent = usuarios[0].pass;
-	userContent.appendChild(userPass);
-
-	containerAdm.appendChild(userContent);
+	const clone = template.cloneNode(true);
+	fragment.appendChild(clone);
+	containerAdm.appendChild(fragment);
 }
 
-function infoLog() {
-	Toastify({
-		text: 'Incia sesión como Administrador para mas opciones',
-		duration: 2000,
-		destination: 'https://github.com/apvarun/toastify-js',
-		newWindow: true,
-		close: true,
-		gravity: 'top',
-		position: 'center',
-		stopOnFocus: true,
-		className: 'toast__info',
-		style: {
-			background: 'linear-gradient(to right, #00b09b, #96c93d)',
-		},
-	}).showToast();
-}
-
-function sessionIni() {
-	const inputUs = document.getElementById('inputUi');
-	const user = inputUs.value;
-	const inputPa = document.getElementById('inputPi');
-	const pass = inputPa.value;
-
-	if (user === usuarios[0].user && pass === usuarios[0].pass) {
-		cuentaAdmin();
-	}
-	// Falta agregar validacion de los demas usuarios dados de alta
-	else if (user.trim() && pass.trim()) {
-	} else {
+const botonInfo = () => {
+	let btnInfo = document.getElementById('btn__info');
+	btnInfo.addEventListener('click', () => {
 		Toastify({
-			text: 'Ingresa un usuario y contraseña valido',
+			text: 'Incia sesión como Administrador para mas opciones',
 			duration: 2000,
 			destination: 'https://github.com/apvarun/toastify-js',
 			newWindow: true,
@@ -96,50 +53,65 @@ function sessionIni() {
 			gravity: 'top',
 			position: 'center',
 			stopOnFocus: true,
-			className: 'toast__error',
+			className: 'toast__info',
 			style: {
-				background: 'linear-gradient(to right, #df1616, #e72721a8)',
+				background: 'linear-gradient(to right, #00b09b, #96c93d)',
 			},
 		}).showToast();
-	}
+	})
 }
 
-function cuentaAdmin() {
+const botonInicioSesion = () => {
+	let btnLogin = document.getElementById('btn__log');
+	btnLogin.addEventListener('click', () => {
+		const inputUs = document.getElementById('inputUi');
+		const user = inputUs.value;
+		const inputPa = document.getElementById('inputPi');
+		const pass = inputPa.value;
+
+		if (user === usuarios[0].user && pass === usuarios[0].pass) {
+			navBarAdministrador();
+		}
+		// Falta agregar validacion de los demas usuarios dados de alta
+		else if (user.trim() && pass.trim()) {
+		} else {
+			Toastify({
+				text: 'Ingresa un usuario y contraseña valido',
+				duration: 2000,
+				destination: 'https://github.com/apvarun/toastify-js',
+				newWindow: true,
+				close: true,
+				gravity: 'top',
+				position: 'center',
+				stopOnFocus: true,
+				className: 'toast__error',
+				style: {
+					background: 'linear-gradient(to right, #df1616, #e72721a8)',
+				},
+			}).showToast();
+		}
+	})
+}
+
+const navBarAdministrador = () => {
 	const menuAdmon = document.getElementById('admMenu');
 	const linkTienda = document.getElementById('tienda');
-	const admin = `
-    <a class="header__link nav-link dropdown-toggle" href="#" id="admonMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
-    <ul class="adm dropdown-menu" aria-labelledby="navbarDropdown id">
-        <li><a class="header__link nav-link" href="./admon/inventario.html">Inventario</a></li>
-        <li><a class="header__link nav-link" href="./admon/usuarios.html">Usuarios</a></li>
-    </ul>
-    `;
+
+	const template = document.getElementById('template-adminMenu').content
+	const fragment = document.createDocumentFragment();
+
+	const clone = template.cloneNode(true);
+	fragment.appendChild(clone);
+	menuAdmon.appendChild(fragment);
+
 	const tienda = `
-    <a class="header__link nav-link" href="./usuario/tienda.html">Tienda</a>
-	 `;
-	menuAdmon.innerHTML = admin;
+     <a class="header__link nav-link" href="./usuario/tienda.html">Tienda</a>
+ 	 `;
 	linkTienda.innerHTML = tienda;
 	Swal.fire({
 		position: 'top',
 		icon: 'success',
 		title: 'Iniciaste correctamente como Administrador',
-		showConfirmButton: false,
-		timer: 1200,
-	});
-}
-
-// FUNCION PENDIENTE
-
-function cuentaUser() {
-	const menuUser = document.getElementById('tienda');
-	const tienda = `
-    <a class="header__link nav-link" href="./usuario/tienda.html">Tienda</a>
-    `;
-	menuUser.innerHTML = tienda;
-	Swal.fire({
-		position: 'top',
-		icon: 'success',
-		title: 'Iniciaste correctamente con cuenta de Usuario',
 		showConfirmButton: false,
 		timer: 1200,
 	});

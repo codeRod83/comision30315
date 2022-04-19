@@ -1,90 +1,70 @@
 // VARIABLES, ARRAY & OBJETOS
 
-let btnAddUser = document.getElementById('btn__addUser');
-const usuarioStore = localStorage.getItem('usuariosls');
+
 let usuarios = [];
 let idUser = '';
-let rank = '';
+let rank = '.';
 
-// Llamar desde JSON
+// LLAMADA USUARIOS DESDE JSON POR MEDIO DE FETCH
 
-const URL = '../data/usuarios.json';
-fetch(URL)
-	.then((res) => res.json())
-	.then((userData) => {});
+const pedirJson = async () => {
+	const URL = '../data/usuarios.json';
+	const response = await fetch(URL);
+	usuarios = await response.json();
+	
+	llamarLocalStorage();
+}
+pedirJson();
 
-const response = await fetch(URL);
-usuarios = await response.json();
-// console.log(usuarios);
-
-// LLAMADO DE FUNCIONES
-
-userLocalStor();
-window.addEventListener('load', mostrarUsers);
-btnAddUser.addEventListener('click', addUser);
-// usuarios.push(defUser);
-
-// FUNCIONES
-
-function userLocalStor() {
+const llamarLocalStorage = () => {
+	const usuarioStore = localStorage.getItem('usuariosls');
 	if (usuarioStore) {
 		usuarios = JSON.parse(usuarioStore);
 	}
-	mostrarUsers();
-	// console.log(usuarios.length);
 	idUser = usuarios.length;
+	mostrarUsuarios();
+	agregarUsuario();
+	
 }
 
-function mostrarUsers() {
+// FUNCIONES
+
+const mostrarUsuarios = () => {
 	const contenedor = document.getElementById('tabUser');
-
 	contenedor.innerHTML = '';
-	for (const datUser of usuarios) {
-		const userCont = document.createElement('tr');
-		userCont.className = 'table-dark';
+	const template = document.getElementById('template-tablaUsuarios').content;
+	const fragment = document.createDocumentFragment();
+	
+	usuarios.forEach(usuario => {
+		template.querySelector('th').textContent = usuario.id;
+		template.querySelectorAll('td')[0].textContent = usuario.rank;
+		template.querySelectorAll('td')[1].textContent = usuario.user;
+		template.querySelectorAll('td')[2].textContent = usuario.pass;
 
-		const userNum = document.createElement('th');
-		userNum.scope = 'row';
-		userNum.className = 'text-center';
-		userNum.textContent = datUser.id;
-		userCont.appendChild(userNum);
-		const userRank = document.createElement('td');
-		userRank.className = 'text-center';
-		userRank.textContent = datUser.rank;
-		userCont.appendChild(userRank);
-		const userName = document.createElement('td');
-		userName.className = 'text-center';
-		userName.textContent = datUser.user;
-		userCont.appendChild(userName);
-		const userPass = document.createElement('td');
-		userPass.className = 'text-center';
-		userPass.textContent = datUser.pass;
-		userCont.appendChild(userPass);
-
-		contenedor.appendChild(userCont);
-	}
+		const clone = template.cloneNode(true);
+		fragment.appendChild(clone);
+	});
+	contenedor.appendChild(fragment);
+	
 }
 
-function addUser() {
-	const inputUs = document.getElementById('inputU');
-	const user = inputUs.value;
-	const inputPa = document.getElementById('inputP');
-	const pass = inputPa.value;
-	const input1 = document.getElementById('flexRadioSup');
-	const input2 = document.getElementById('flexRadioUser');
+const agregarUsuario = () => {
+	let btnAddUser = document.getElementById('btn__addUser');
+	btnAddUser.addEventListener('click', () => {
+		const inputUs = document.getElementById('inputU');
+		const user = inputUs.value;
+		const inputPa = document.getElementById('inputP');
+		const pass = inputPa.value;
+		const input1 = document.getElementById('flexRadioSup');
+		const input2 = document.getElementById('flexRadioUser');
 
-	if (input1.checked) {
-		rank = input1.value;
-		cargaUser();
-	} else if (input2.checked) {
-		rank = input2.value;
-		cargaUser();
-	}
-
-	// Verificar que reciba tipo de Cuenta
-	// console.log(rank);
-
-	function cargaUser() {
+		if (input1.checked) {
+			rank = input1.value;
+		} else if (input2.checked) {
+			rank = input2.value;
+		} else {
+			rank = '0';
+		}
 		if (user == usuarios[0].user || pass == usuarios[0].pass) {
 			Toastify({
 				text: 'Esta cuenta de usuario ya existe',
@@ -100,7 +80,7 @@ function addUser() {
 					background: 'linear-gradient(to right, #00b09b, #96c93d)',
 				},
 			}).showToast();
-		} else if (user.trim() && pass.trim()) {
+		} else if (user.trim() && pass.trim() && rank != '0') {
 			function Users(id, rank, user, pass) {
 				this.id = id;
 				this.rank = rank;
@@ -110,15 +90,12 @@ function addUser() {
 			idUser = idUser + 1;
 			const usuario = new Users(idUser, rank, user, pass);
 			usuarios.push(usuario);
-			console.log(usuarios);
-			inputUs.value = '';
-			inputPa.value = '';
-
-			mostrarUsers();
 			localStorage.setItem('usuariosls', JSON.stringify(usuarios));
-		} else {
+
+			mostrarUsuarios();
+		} else if (user == '' && pass == '' && rank == '0') {
 			Toastify({
-				text: 'Ingresa usuario y contraseña',
+				text: 'No ingresaste ningun dato',
 				duration: 2000,
 				destination: 'https://github.com/apvarun/toastify-js',
 				newWindow: true,
@@ -132,6 +109,55 @@ function addUser() {
 					background: 'linear-gradient(to right, #df1616, #e72721a8',
 				},
 			}).showToast();
+		} else if (user == '') {
+			Toastify({
+				text: 'No ingresaste un usuario',
+				duration: 2000,
+				destination: 'https://github.com/apvarun/toastify-js',
+				newWindow: true,
+				close: true,
+				gravity: 'top',
+				position: 'center',
+				stopOnFocus: true,
+				className: 'toast__error',
+				style: {
+					borderradius: '50%',
+					background: 'linear-gradient(to right, #df1616, #e72721a8',
+				},
+			}).showToast();
+		} else if (pass == '') {
+			Toastify({
+				text: 'No ingresaste un password',
+				duration: 2000,
+				destination: 'https://github.com/apvarun/toastify-js',
+				newWindow: true,
+				close: true,
+				gravity: 'top',
+				position: 'center',
+				stopOnFocus: true,
+				className: 'toast__error',
+				style: {
+					borderradius: '50%',
+					background: 'linear-gradient(to right, #df1616, #e72721a8',
+				},
+			}).showToast();
+		} else if (rank == '0') {
+			Toastify({
+				text: 'No ingresaste un rango de Usuario',
+				duration: 2000,
+				destination: 'https://github.com/apvarun/toastify-js',
+				newWindow: true,
+				close: true,
+				gravity: 'top',
+				position: 'center',
+				stopOnFocus: true,
+				className: 'toast__error',
+				style: {
+					borderradius: '50%',
+					background: 'linear-gradient(to right, #df1616, #e72721a8',
+				},
+			}).showToast();
+		
 		}
-	}
+	})
 }
